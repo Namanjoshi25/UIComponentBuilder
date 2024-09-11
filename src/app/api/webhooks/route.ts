@@ -63,7 +63,12 @@ export async function POST(req: Request) {
     await connect();
     await User.create(newUser);
     console.log("user created");
-    } catch (error) {}
+    } catch (error) {
+      console.error('Error creating user:', error);
+  return new Response('Error occurred while creating user', {
+    status: 500,
+  });
+    }
     } 
    
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
